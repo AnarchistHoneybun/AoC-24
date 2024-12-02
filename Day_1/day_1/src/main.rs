@@ -74,7 +74,7 @@ fn part_1(filename: &str) {
 }
 
 fn main() -> io::Result<()> {
-    let input_file = "input_day_1.txt";
+    let input_file = "../../input/day1/sample.txt";
 
     part_1(input_file);
     part_2(input_file);
