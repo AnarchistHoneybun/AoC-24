@@ -99,7 +99,7 @@ fn part_2(filepath: &str) {
 }
 
 fn main() {
-    let input_file = "../../input/day2/full.txt";
+    let input_file = "../../input/day2/sample.txt";
     part_1(input_file);
     part_2(input_file);
 }
