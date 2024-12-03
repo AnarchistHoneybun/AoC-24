@@ -1,6 +1,6 @@
-use std::fs;
 use regex::Regex;
 use std::error::Error;
+use std::fs;
 
 #[derive(Debug)]
 enum Instruction {
@@ -16,9 +16,10 @@ struct PatternMatch {
     length: usize,
 }
 
-fn find_next_instruction(content: &str, patterns: &[(Regex, Box<dyn Fn(&regex::Captures) -> Instruction>)])
-                         -> Option<PatternMatch> {
-
+fn find_next_instruction(
+    content: &str,
+    patterns: &[(Regex, Box<dyn Fn(&regex::Captures) -> Instruction>)],
+) -> Option<PatternMatch> {
     let mut earliest_match: Option<PatternMatch> = None;
 
     // Check all patterns at current position
@@ -47,19 +48,13 @@ fn parse_instructions(content: &str) -> Result<Vec<Instruction>, Box<dyn Error>>
         (
             Regex::new(r"mul\((\d{1,3}),(\d{1,3})\)")?,
             Box::new(|caps: &regex::Captures| -> Instruction {
-                Instruction::Multiply(
-                    caps[1].parse().unwrap(),
-                    caps[2].parse().unwrap()
-                )
-            })
+                Instruction::Multiply(caps[1].parse().unwrap(), caps[2].parse().unwrap())
+            }),
         ),
-        (
-            Regex::new(r"do\(\)")?,
-            Box::new(|_| Instruction::Enable)
-        ),
+        (Regex::new(r"do\(\)")?, Box::new(|_| Instruction::Enable)),
         (
             Regex::new(r"don't\(\)")?,
-            Box::new(|_| Instruction::Disable)
+            Box::new(|_| Instruction::Disable),
         ),
     ];
 
@@ -81,39 +76,32 @@ fn parse_instructions(content: &str) -> Result<Vec<Instruction>, Box<dyn Error>>
     Ok(instructions)
 }
 
-fn process_file(filename: &str) -> Result<(), Box<dyn Error>> {
-    let contents = fs::read_to_string(filename)?;
-    let instructions = parse_instructions(&contents)?;
+fn part_2(filename: &str) {
+    let contents = fs::read_to_string(filename).unwrap();
+    let instructions = parse_instructions(&contents).unwrap();
 
     let mut total = 0;
-    let mut enabled = true;  // Multiplications are enabled by default
+    let mut enabled = true; // Multiplications are enabled by default
 
     for instruction in instructions {
         match instruction {
             Instruction::Multiply(num1, num2) => {
                 if enabled {
                     let result = num1 * num2;
-                    println!("Computing multiplication: {} * {} = {}", num1, num2, result);
                     total += result;
-                } else {
-                    println!("Skipping multiplication: {} * {} (multiplications disabled)", num1, num2);
                 }
-            },
+            }
             Instruction::Enable => {
-                println!("Enabling multiplications");
                 enabled = true;
-            },
+            }
             Instruction::Disable => {
-                println!("Disabling multiplications");
                 enabled = false;
-            },
+            }
         }
     }
 
-    println!("\nTotal sum of enabled multiplications: {}", total);
-    Ok(())
+    println!("\npart 2: {}", total);
 }
-
 
 fn part_1(filename: &str) {
     // Read the file contents
@@ -144,8 +132,5 @@ fn main() {
     let input_file = "../../input/day3/full.txt";
 
     part_1(input_file);
-    if let Err(e) = process_file(input_file) {
-        eprintln!("Error processing file: {}", e);
-    }
-
+    part_2(input_file);
 }
