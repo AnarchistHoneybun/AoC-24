@@ -14,4 +14,7 @@ Solutions to [Advent of Code](https://adventofcode.com/2024/about) puzzles for t
 ### Day 3
 - Part 1: single regex to find all valid mul's and then extract number from them to multiply and add to running total
 - Part 2: larger regex that matches mul, do and don't. Have a flag (set by default) to tell if muls are enabled or not. On any match, if do or don't, flip flag accordingly, and if mul, extract the numbers, the compute and add to total or not based on the flag
-- 
+
+### Day 5
+- Part 1: Parse input into page ordering rules and updates. For each update, check if it follows all applicable rules (only considering rules where both pages exist in the update) by verifying that for each rule, the 'before' page appears earlier in the update than the 'after' page. Get middle numbers of valid updates and sum them.
+- Part 2: Find invalid updates (those that fail part 1's check). For each invalid update, use topological sort to reorder its pages according to rules - build a directed graph from the rules, track in-degrees, and process nodes with zero in-degree to build correct order. Get middle numbers of these reordered updates and sum them.
