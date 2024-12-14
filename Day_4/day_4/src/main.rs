@@ -36,7 +36,7 @@ fn part_1(filename: &str) {
         }
     }
 
-    println!("part 1: {}", count);
+    println!("Part 1: {}", count);
 }
 
 fn is_xmas_at_position(grid: &[Vec<char>], start_x: usize, start_y: usize, dx: i32, dy: i32) -> bool {
@@ -95,7 +95,7 @@ fn part_2(filename: &str) {
         }
     }
 
-    println!("part 2: {}", count);
+    println!("Part 2: {}", count);
 }
 
 fn is_x_mas_at_position(grid: &[Vec<char>], x: usize, y: usize) -> bool {

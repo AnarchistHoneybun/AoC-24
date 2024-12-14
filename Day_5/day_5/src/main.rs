@@ -120,7 +120,7 @@ fn part_1_and_2(filename: &str) {
         .map(|update| get_middle_number(update))
         .sum();
     println!(
-        "Part 1 - Sum of middle numbers from valid updates: {}",
+        "Part 1: {}",
         valid_sum
     );
 
@@ -134,7 +134,7 @@ fn part_1_and_2(filename: &str) {
         })
         .sum();
     println!(
-        "Part 2 - Sum of middle numbers from fixed invalid updates: {}",
+        "Part 2: {}",
         invalid_sum
     );
 }

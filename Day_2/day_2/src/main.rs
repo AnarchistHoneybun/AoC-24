@@ -80,7 +80,7 @@ fn part_1(filepath: &str) {
         }
     });
 
-    println!("part 1: {}", safe_reports);
+    println!("Part 1: {}", safe_reports);
 }
 
 fn part_2(filepath: &str) {
@@ -95,7 +95,7 @@ fn part_2(filepath: &str) {
         }
     });
 
-    println!("part 2: {}", safe_reports);
+    println!("Part 2: {}", safe_reports);
 }
 
 fn main() {

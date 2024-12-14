@@ -21,7 +21,7 @@ fn part_1(filename: &str) {
         total += result;
     }
 
-    println!("\npart 1: {}", total);
+    println!("Part 1: {}", total);
 }
 
 fn part_2(filename: &str) {
@@ -52,7 +52,7 @@ fn part_2(filename: &str) {
         }
     }
 
-    println!("\npart 2: {}", total);
+    println!("Part 2: {}", total);
 }
 
 fn main() {
